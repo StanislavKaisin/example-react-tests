@@ -6,6 +6,7 @@ import findByTestAttr from '../../utils/findByTestAttr'
 
 const setUp= (props={})=>{
   const component = shallow(<Header {...props}/>);
+  console.log("component=", component);
   return component;
 }
 
@@ -26,7 +27,6 @@ describe("header component", () => {
     // const wrapper = component.find('.headerComponent')
     // const wrapper = component.find(`[data-test='headerComponent']`)
     const wrapper = findByTestAttr(component, 'headerComponent')
-
     expect(wrapper.length).toBe(1);
   });
   it("should render a logo", () => {
