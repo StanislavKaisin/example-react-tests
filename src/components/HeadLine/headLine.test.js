@@ -3,14 +3,41 @@ import { shallow } from "enzyme";
 import HeadLine from "./index";
 
 import findByTestAttr from "../../utils/findByTestAttr";
+import checkProps from "../../utils/checkProps.js";
+
+//() => {}
 
 const setUp = (props = {}) => {
   const component = shallow(<HeadLine {...props} />);
   return component;
 };
+
 // console.log(setUp())
+// console.log('checkProps=', checkProps)
 
 describe("headline component", () => {
+  describe("checking prop types", () => {
+    it("should not throw a warning", () => {
+      const expectedProps = {
+        header: "test header",
+        description: "test description",
+        tempArray: [
+          {
+            fName: "test fName",
+            lName: "test lName",
+            email: "test email",
+            age: 23,
+            onlineStatus: false,
+          },
+        ],
+      };
+      // console.log(HeadLine.propTypes);
+      // console.log(HeadLine.name);
+      const propsError = checkProps(HeadLine, expectedProps);
+      expect(propsError).toBeUndefined();
+    });
+  });
+
   // render with props
   describe("have props", () => {
     let component;
