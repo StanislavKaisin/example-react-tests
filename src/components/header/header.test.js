@@ -6,7 +6,7 @@ import findByTestAttr from '../../utils/findByTestAttr'
 
 const setUp= (props={})=>{
   const component = shallow(<Header {...props}/>);
-  console.log("component=", component);
+  // console.log("component=", component);
   return component;
 }
 
