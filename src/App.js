@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { fetchPosts } from "./redux/actions/index";
 
 // console.log('fetchPosts=', fetchPosts)
-
+//array only for test
 const tempArray = [
   {
     fName: "joe",
@@ -19,15 +19,33 @@ const tempArray = [
     onlineStatus: true,
   },
 ];
+// initial state for test
+const initialState = {
+  hideBtn: false
+}
 
 class App extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      ...initialState
+    }
     this.fetch = this.fetch.bind(this);
   }
   fetch() {
     // console.log('this.props.fetchPosts=', this.props.fetchPosts)
     this.props.fetchPosts();
+    this.exampleMethod_updateState();
+  }
+
+  exampleMethod_updateState(){
+    const {hideBtn}=this.state
+    this.setState({
+      hideBtn: !hideBtn
+    })
+  }
+  exampleMethod_returnAValue(number){
+    return number+1
   }
 
   render() {
@@ -36,6 +54,8 @@ class App extends Component {
       emitEvent: this.fetch
     }
     const {posts}=this.props;
+    const {hideBtn}=this.state;
+
     // console.log('props=',  this.props)
     return (
       <div className="App" data-test='appComponent'>
@@ -43,10 +63,11 @@ class App extends Component {
         <section className="main">
           <HeadLine
             header={"posts"}
-            description="clickthe button to render posts"
+            description="clickthe button to render posts. but where is it?"
             tempArray={tempArray}
           />
-          <Button {...configButton}/>
+          {!hideBtn && <Button {...configButton}/>}
+          
           {posts.length? 
           (<div>
             {posts.map(post=>{
