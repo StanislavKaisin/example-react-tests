@@ -42,7 +42,7 @@ describe("app component", () => {
     const component = findByTestAttr(wrapper, "appComponent");
     // console.log('component=', component)
     // console.log(wrapper)
-    console.log(component.length);
+    // console.log(component.length);
     expect(component.length).toBe(1);
   });
 });
